@@ -18,6 +18,6 @@ Podstawowe zasady są jednak bardzo podobne, niezależnie od wybranego podsystem
    Zgodnie z przyjetą konwencją, zamierzam o wszystkim opowiadać dość mocno łopatologicznie. Językiem prostym, tłumacząc niemal kazdą linię kodu.
 Miłego ...
 
-## Projekty
+## Opis projektów
 
 [CookieApp](/CookieApp/README.md)

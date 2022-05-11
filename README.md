@@ -20,4 +20,4 @@ Miłego ...
 
 ## Projekty
 
-[a CookieApp](/CookieApp/README.md)
+[CookieApp](/CookieApp/README.md)

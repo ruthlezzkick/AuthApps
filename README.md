@@ -2,9 +2,9 @@
 
 Ta Solucja, projekty w niej zawarte a przede wszystkim ich opisy mają na celu wprowadzenie w świat aplikacji webowych budowanych w technologiach ASP.NET ze szczególnym 
 skupieniem się na temacie uwierzytelniania i autoryzacji. W pewnym sensie upraszczając, webowe aplikacje można rodzielić na 3 sfery:
-	 1. obsługę baz danych i logikę biznesową, z którą sprawnie poradzi sobie kazdy developer mający doświadczenie na głebokim backendzie ( aplikacje konsolowe, biblioteki )
-	 2. HTML, CSS, javascript, czyli frontend aplikacji. Jej design oraz UI/UX , czyli całe to operowanie na aplikacji w przeglądarce.
-	 3. Płytki Backend, związany z tym jak serwer odpowiada na rządania płynace z przegladarki. jak to się chociażby dzieje, że  przechodząc pomiędzy poszczególnymi stronami naszej aplikacji,system wie kim jesteśmy, czy może nam pokazać pewne dane i jak kontroluje to, żeby nie pokazac ich zbyt wiele.
+1. obsługę baz danych i logikę biznesową, z którą sprawnie poradzi sobie kazdy developer mający doświadczenie na głebokim backendzie ( aplikacje konsolowe, biblioteki )
+2. HTML, CSS, javascript, czyli frontend aplikacji. Jej design oraz UI/UX , czyli całe to operowanie na aplikacji w przeglądarce.
+3. Płytki Backend, związany z tym jak serwer odpowiada na rządania płynace z przegladarki. jak to się chociażby dzieje, że  przechodząc pomiędzy poszczególnymi stronami naszej aplikacji,system wie kim jesteśmy, czy może nam pokazać pewne dane i jak kontroluje to, żeby nie pokazac ich zbyt wiele.
 	
 Ten trzeci punkt to właśnie ta sfera na której najbardziej skupia się bieżąca solucja.	
 Projekty, które planuje w niej umieścić bedą mocno uproszczone, ale nie pozbawione jakiegokolwiek sensu. Poprostu nie chcę aby dopieszczanie i nadmiar kodu przysłaniał i komplikował istotę głównego przekazu.

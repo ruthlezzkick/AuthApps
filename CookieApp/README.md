@@ -42,11 +42,7 @@
 
   -- brak dostępu 
 
-  
-
 ## Opis procesu budowy aplikacji i poszczególnych klas 
-
------------------------------- 
 
 1. Tworzymy projekt typu ASP.NET Web Application (.NET Framework) na szablonie Empty ( dzięki czemu nie dostaniemy żadnych przykładów, domyślnych klas, ani dodatkowych wpisów do webConfig ) 
 

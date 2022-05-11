@@ -45,3 +45,8 @@
 
 
 ![logowanie](../IMG/logowanie1.PNG?raw=true)
+
+<p float="left">
+  <img src="../IMG/logowanie1.PNG" width="100" />
+  <img src="../IMG/logowanie2.PNG" width="100" /> 
+</p>

@@ -43,4 +43,5 @@
 
 7. Każdy Web Form z automatu dostaje 2 dodatkowe pliki: cs i designer. W pliku cs możemy programować logikę do wywołania przed załadowaniem strony w przeglądarce (metoda Page_Load) oraz w razie potrzeby logikę obsługi zdarzeń np. kliknięcia w przycisk. W pliku designer dostajemy nasze kontrolki Asp.Net , dzięki czemu możemy się do nich dynamicznie odwoływać w kodzie i operować na nich. 
 
-![logowanie1](http://github.com/ruthlezzkick/AuthApps/tree/main/IMG/logowanie1.PNG)
+
+![logowanie](https://github.com/ruthlezzkick/AuthApps/tree/main/IMG/logowanie1.PNG?raw=true)

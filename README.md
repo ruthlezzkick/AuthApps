@@ -7,7 +7,7 @@ skupieniem się na temacie uwierzytelniania i autoryzacji. W pewnym sensie upras
 2. HTML, CSS, javascript, czyli frontend aplikacji. Jej design oraz UI/UX , czyli całe to operowanie na aplikacji w przeglądarce.
 3. Płytki Backend, związany z tym jak serwer odpowiada na rządania płynace z przegladarki. jak to się chociażby dzieje, że  przechodząc pomiędzy poszczególnymi stronami naszej aplikacji,system wie kim jesteśmy, czy może nam pokazać pewne dane i jak kontroluje to, żeby nie pokazac ich zbyt wiele.
 	
-   Ten trzeci punkt, to właśnie ta sfera, na której najbardziej skupia się bieżąca solucja.	
+Ten trzeci punkt, to właśnie ta sfera, na której najbardziej skupia się bieżąca solucja.	
 Projekty, które planuje w niej umieścić bedą mocno uproszczone, ale nie pozbawione jakiegokolwiek sensu. Poprostu nie chcę aby dopieszczanie i nadmiar kodu przysłaniał i komplikował istotę głównego przekazu.
 Mogą pojawić się więc tu dobre przykłady złych przykładów :) Czasem łamiące pewne fundamentalne zasady bezpieczeństwa. Ale będzie to w pełni świadome, a zagrożenia wynikające z takich uproszczeń postaram się szczegółowo objasniać.
 	

@@ -42,3 +42,5 @@
 6. W niektórych ze stron mieszamy kod deklaratywny (HTML) z imperatywnym C#, który ląduje między znacznikami <%= =%> 
 
 7. Każdy Web Form z automatu dostaje 2 dodatkowe pliki: cs i designer. W pliku cs możemy programować logikę do wywołania przed załadowaniem strony w przeglądarce (metoda Page_Load) oraz w razie potrzeby logikę obsługi zdarzeń np. kliknięcia w przycisk. W pliku designer dostajemy nasze kontrolki Asp.Net , dzięki czemu możemy się do nich dynamicznie odwoływać w kodzie i operować na nich. 
+
+![Solucja](~/IMG/logowanie1.PNG)

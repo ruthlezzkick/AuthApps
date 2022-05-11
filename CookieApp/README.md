@@ -56,3 +56,5 @@ Lista zadań i panel administracyjny
   <img src="../IMG/lista1.PNG"/>
   <img src="../IMG/admin1.PNG"/> 
 </p>
+
+## Kod

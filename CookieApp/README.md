@@ -10,7 +10,7 @@
 
   2. Strony są bardzo surowe, nie zawierają żadnego stylowania (css). Czysty i goły HTML.  
 
-  3. Ponieważ nie skupiamy się tu na backendzie i bazie danych, to logikę symulującą klasy z danymi i ich pobieranie symuluje klasa DataProvider. 
+  3. Ponieważ nie skupiamy się tu na backendzie i bazie danych, to logikę symulującą klasy z danymi i ich pobieranie załatwia klasa DataProvider. 
   Dane w naszej imitacji bazy danych można opisać w skrócie tak: 
 
   - mamy 4 użytkowników: Janek, Adam, Admin i Admin2 

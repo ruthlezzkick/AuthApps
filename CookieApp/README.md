@@ -14,28 +14,18 @@
   Dane w naszej imitacji bazy danych można opisać w skrócie tak: 
 
   - mamy 4 użytkowników: Janek, Adam, Admin i Admin2 
-
   - każdy z nich ma hasło dokładnie takie jak login (co nie jest nawet zawarte w klasach zawierających dane o użytkownikach, a w logice kodu) 
-
   - użytkownicy mają też pewne role, ale również są one zahardkodowane w logice a nie na poziomie klas użytkowników.  
-
-	-- Logika ta pozwala na dostęp do Listy zadań użytkownikom: Jan, Adam i Admin (Admin2 nie ma dostępu do swoich zadań, jest tylko adminem) 
-
-  -- Admin i Admin2 mają dodatkowo dostęp do panelu administratora 
+    - Logika ta pozwala na dostęp do Listy zadań użytkownikom: Jan, Adam i Admin (Admin2 nie ma dostępu do swoich zadań, jest tylko adminem) 
+    - Admin i Admin2 mają dodatkowo dostęp do panelu administratora 
 
   - lista zadań to zadania tylko danego użytkownika 
-
   - panel administracyjny pokazuje informacje o wszystkich użytkownikach i ilości ich zadań 
-
   - każda strona posiada linki do innych stron, aby łatwo można było nawigować po aplikacji 
-
   - aplikację można testować na różnych użytkownikach. Możliwe komunikaty związane z błędnym logowaniem i brakiem dostępu są takie: 
-
-  -- brak loginu 
-
-  -- błędny login lub hasło 
-
-  -- brak dostępu 
+    - brak loginu 
+    - błędny login lub hasło 
+    - brak dostępu 
 
 ## Opis procesu budowy aplikacji i poszczególnych klas 
 

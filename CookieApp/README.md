@@ -80,3 +80,56 @@ Nowo dodany plik bedzie miał mniej więcej taką strukturę:
 </body>
 </html>
 ```
+Większość to czysty kod html. Na górze mamy sekcję Page z kilkoma domyślnymi parametrami. AutoEventWireup włącza obsługę zdarzeń na stronie, CodeBehind wiąże stronę z plikiem, gdzie możemy dodać bardziej imperatywny kod w C#. Z automatu każdy nowy Web Form jest html'owym elementem form. Najbardziej istotny jest tu atrybut runat="server", który oznacza nasze html'owe tagi jako generowane po stronie serwera. Jest to bardzo powszechne i daje wiele możliwości, o których więcej, nieco później.
+
+Kod HTML'owy możemy łączyć z C# za pomocą znaczników <%= =%> i różnych ich wariacji. Niżej przykład takiego łączenia w pliku ToDo.aspx
+```
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Nazwa</th>
+        <th>Użytkownik</th>
+    </tr>
+    <% foreach(var toDoItem in UserToDoItems) { %>
+    <tr>
+        <td><%=toDoItem.Id %></td>
+        <td><%=toDoItem.Name %></td>
+        <td><%=toDoItem.UserName %></td>
+    </tr>
+     <% } %>
+</table>
+```
+Główna logika związana z daną stroną znajduje się jednak w pliku [nazwa Web Form].aspx.cs. Taki plik jest generowany automnatycznie podczas dodawania nowego Web Form. Niżej przykład z ToDo.aspx.cs
+```
+using System;
+using System.Collections.Generic;
+
+namespace CookieApp
+{
+    public partial class Todo : System.Web.UI.Page
+    {
+        public IList<ToDoItem> UserToDoItems { get; set; }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            var cookie = this.Request.Cookies["user"];
+            if (cookie == null)
+            {
+                this.Response.Redirect("Login.aspx?baseUrl=Todo.aspx");
+            }
+            else
+            {
+                var userCookie = cookie.Value;
+                var dataProvider= new DataProvider();
+                var user = dataProvider.GetUserByUserName(userCookie);
+                if (!user.Roles.Contains("User"))
+                {
+                    this.Response.Redirect("Login.aspx?baseUrl=Todo.aspx");
+                }
+                UserToDoItems = dataProvider.GetToDoItemsByUserName(user.UserName);
+            }
+        }
+    }
+}
+```
+
+      

@@ -131,5 +131,48 @@ namespace CookieApp
     }
 }
 ```
+Jeszcze jednym plikiem generowanym podczas dodawania i modyfikowania Web Form jest plik [nazwa Web Form].aspx.designer.cs. Wpadają tu głównie deklaracje dodawanych componentów ASP.NET, bedacych czesto odpowiednikami zwykłych tagów html. Dzięki użyciu <asp:HyperLink> zamiast zwykłego tagu <a>, powstają właśnie takie globalne zmienne, na których możemy później dynamicznie operować bez użycia javascript
 
+```csharp
+public partial class Todo
+    {
+
+        /// <summary>
+        /// logoutLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink logoutLink;
+
+        /// <summary>
+        /// loginLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink loginLink;
+
+        /// <summary>
+        /// adminLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink adminLink;
+
+        /// <summary>
+        /// toDoLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink toDoLink;
+    }
+}
+```
       

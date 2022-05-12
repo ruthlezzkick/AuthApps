@@ -8,7 +8,7 @@
 
   1. Aplikacja zawiera 3 podstrony + 1 niewidoczną (bez reprezentacji graficznej) która wykonuje w tle operację wylogowania i od razu robi redirect do strony logowania : Login, Todo, AdminPanel  +  LogOut 
 
-  2. Strony są bardzo surowe, nie zawierają żadnego stylowania (css). Czysty i goły HTML.  
+  2. Strony są bardzo surowe, nie zawierają żadnego stylowania (css) ani javascript. Czysty i goły HTML.  
 
   3. Ponieważ nie skupiamy się tu na backendzie i bazie danych, to logikę symulującą klasy z danymi i ich pobieranie załatwia klasa DataProvider. 
   Dane w naszej imitacji bazy danych można opisać w skrócie tak: 

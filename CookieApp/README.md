@@ -58,10 +58,12 @@ Lista zadań i panel administracyjny
 
 ## Kod
 
-Struktura projektu wygląda następująco: 
+Struktura projektu wygląda następująco:
+
 ![Projekt](../IMG/Projekt1.PNG)
 
-Pliki aspx dodajemy do projektu za pomocą Add/NewItem/Web Form. 
+Pliki aspx dodajemy do projektu za pomocą Add/NewItem/Web Form.
+
 Nowo dodany plik bedzie miał mniej więcej taką strukturę:
 ```
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Logout.aspx.cs" Inherits="CookieApp.Logout" %>

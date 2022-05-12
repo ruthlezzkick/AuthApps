@@ -131,7 +131,7 @@ namespace CookieApp
     }
 }
 ```
-Jeszcze jednym plikiem generowanym podczas dodawania i modyfikowania Web Form jest plik [nazwa Web Form].aspx.designer.cs. Wpadają tu głównie deklaracje dodawanych componentów ASP.NET, bedacych czesto odpowiednikami zwykłych tagów html. Dzięki użyciu <asp:HyperLink> zamiast zwykłego tagu <a>, powstają właśnie takie globalne zmienne, na których możemy później dynamicznie operować bez użycia javascript
+Jeszcze jednym plikiem generowanym podczas dodawania i modyfikowania Web Form jest plik [nazwa Web Form].aspx.designer.cs. Wpadają tu głównie deklaracje dodawanych componentów ASP.NET, bedacych czesto odpowiednikami zwykłych tagów html. Dzięki użyciu '<asp:HyperLink>' zamiast zwykłego tagu '<a>', powstają właśnie takie globalne zmienne, na których możemy później dynamicznie operować bez użycia javascript
 
 ```csharp
 public partial class Todo

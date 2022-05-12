@@ -29,7 +29,7 @@
                 </tr>
                 <% foreach(var userStat in UserStats) { %>
                 <tr>
-                    <td><%=userStat.User %></td>
+                    <td><%=userStat.UserName %></td>
                     <td><%=userStat.ItemsCount %></td>
                 </tr>
                  <% } %>

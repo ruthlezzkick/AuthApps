@@ -24,37 +24,35 @@ namespace CookieApp
         protected void loginBtn_Click(object sender, EventArgs e)
         {
             var dataProvider = new DataProvider();
-            var users = dataProvider.GetAllUsers().ToList();
 
             if (string.IsNullOrEmpty(this.userTxt.Text))
             {
                 this.loginMessage.Text = "Nie podano loginu";
                 this.loginMessage.Visible = true;
             }
-            else if (this.userTxt.Text != this.passwordTxt.Text)
-            {
-                this.loginMessage.Text = "Błędny login lub hasło";
-                this.loginMessage.Visible = true;
-            }
-            else if (!users.Contains(this.userTxt.Text))
-            {
-                this.loginMessage.Text = "Błędny login lub hasło";
-                this.loginMessage.Visible = true;
-            }
             else
             {
-                var cookie = new HttpCookie("user");
-                cookie.Value = this.userTxt.Text;
-                this.Response.SetCookie(cookie);
-
-                var baseUrl = this.Request.QueryString["baseUrl"];
-                if (!string.IsNullOrEmpty(baseUrl))
+                var user = dataProvider.GetUserByUserName(this.userTxt.Text);
+                if (user == null || user.Password != this.passwordTxt.Text)
                 {
-                    this.Response.Redirect(baseUrl);
+                    this.loginMessage.Text = "Błędny login lub hasło";
+                    this.loginMessage.Visible = true;
                 }
                 else
                 {
-                    this.Response.Redirect("/");
+                    var cookie = new HttpCookie("user");
+                    cookie.Value = this.userTxt.Text;
+                    this.Response.SetCookie(cookie);
+
+                    var baseUrl = this.Request.QueryString["baseUrl"];
+                    if (!string.IsNullOrEmpty(baseUrl))
+                    {
+                        this.Response.Redirect(baseUrl);
+                    }
+                    else
+                    {
+                        this.Response.Redirect("/");
+                    }
                 }
             }
         }

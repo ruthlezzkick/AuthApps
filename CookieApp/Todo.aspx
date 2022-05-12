@@ -29,11 +29,11 @@
                     <th>Nazwa</th>
                     <th>Użytkownik</th>
                 </tr>
-                <% foreach(var toDoItem in ToDoItems) { %>
+                <% foreach(var toDoItem in UserToDoItems) { %>
                 <tr>
                     <td><%=toDoItem.Id %></td>
                     <td><%=toDoItem.Name %></td>
-                    <td><%=toDoItem.User %></td>
+                    <td><%=toDoItem.UserName %></td>
                 </tr>
                  <% } %>
             </table>

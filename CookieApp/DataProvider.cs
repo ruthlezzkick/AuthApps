@@ -1,17 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace CookieApp
 {
     public class DataProvider
     {
-        public IList<string> GetAllUsers()
+        public IList<ToDoItem> ToDoItems { get;}
+        public IList<User> Users { get;}
+
+        public DataProvider()
         {
-            return new List<string> {"Janek","Adam","Admin","Admin2" };
+            Users = CreateUsers();
+            ToDoItems = CreateToDoItems();
         }
-        public IList<ToDoItem> GetAllToDoItems()
+
+        public IList<ToDoItem> GetToDoItemsByUserName(string userName)
+        {
+            return ToDoItems.Where(x => x.UserName == userName).ToList();
+        }
+        public IList<UserStat> GetAllUserStats()
+        {
+            var userStats = ToDoItems.GroupBy(x => x.UserName).Select(x => new UserStat
+            {
+                UserName = x.Key,
+                ItemsCount = x.Count()
+            }).ToList();
+            return userStats;
+        }
+        public User GetUserByUserName(string userName)
+        {
+            return Users.FirstOrDefault(x => x.UserName == userName);
+        }
+
+        private IList<ToDoItem> CreateToDoItems()
         {
             var list = new List<ToDoItem>
             {
@@ -19,74 +40,89 @@ namespace CookieApp
                 {
                     Id = 1,
                     Name = "Zakupy",
-                    User = "Janek"
+                    UserName = "Janek"
                 },
                 new ToDoItem
                 {
                     Id = 2,
                     Name = "Lekcje",
-                    User = "Janek"
+                    UserName = "Janek"
                 },
                 new ToDoItem
                 {
                     Id = 3,
                     Name = "Zajęcia dodatkowe",
-                    User = "Janek"
+                    UserName = "Janek"
                 },
                 new ToDoItem
                 {
                     Id = 4,
                     Name = "Sprzątanie ogrodu",
-                    User = "Janek"
+                    UserName = "Janek"
                 },
                 new ToDoItem
                 {
                     Id = 5,
                     Name = "Zebranie",
-                    User = "Adam"
+                    UserName = "Adam"
                 },
                 new ToDoItem
                 {
                     Id = 6,
                     Name = "Spotkanie",
-                    User = "Adam"
+                    UserName = "Adam"
                 },
                 new ToDoItem
                 {
                     Id = 7,
                     Name = "Lekcje",
-                    User = "Adam"
+                    UserName = "Adam"
                 },
                 new ToDoItem
                 {
                     Id = 8,
                     Name = "Administracja",
-                    User = "Admin"
+                    UserName = "Admin"
                 },
                 new ToDoItem
                 {
                     Id = 9,
                     Name = "Konfiguracja",
-                    User = "Admin"
-                },
+                    UserName = "Admin"
+                }
             };
             return list;
         }
-
-        public IList<ToDoItem> GetAllToDoItemsByUser(string user)
+        private IList<User> CreateUsers()
         {
-            return GetAllToDoItems().Where(x => x.User == user).ToList();
-        }
-
-        public IList<UserStat> GetAllUserStats()
-        {
-            var toDoItems = GetAllToDoItems().ToList();
-
-            var userStats = toDoItems.GroupBy(x => x.User).Select(x => new UserStat { 
-                User = x.Key,
-                ItemsCount = x.Count(),
-            }).ToList();
-            return userStats;
+            var list = new List<User>
+            {
+                new User
+                {
+                    UserName = "Janek",
+                    Password = "Janek",
+                    Roles = new List<string>{"User"}
+                },
+                new User
+                {
+                    UserName = "Adam",
+                    Password = "Adam",
+                    Roles = new List<string>{"User"}
+                },
+                new User
+                {
+                    UserName = "Admin",
+                    Password = "Admin",
+                    Roles = new List<string>{"User","Admin"}
+                },
+                new User
+                {
+                    UserName = "Admin2",
+                    Password = "Admin2",
+                    Roles = new List<string>{"Admin"}
+                }
+            };
+            return list;
         }
     }
 
@@ -94,12 +130,17 @@ namespace CookieApp
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string User { get; set; }
+        public string UserName { get; set; }
     }
-
+    public class User
+    {
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public IList<string> Roles { get; set; }
+    }
     public class UserStat
     {
-        public string User { get; set; }
+        public string UserName { get; set; }
         public int ItemsCount { get; set; }
     }
 }

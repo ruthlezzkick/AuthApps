@@ -20,13 +20,13 @@ namespace CookieApp
 
             else
             {
-                var user = cookie.Value;
-
-                if(user!="Admin" && user != "Admin2")
+                var userCookie = cookie.Value;
+                var dataProvider = new DataProvider();
+                var user = dataProvider.GetUserByUserName(userCookie);
+                if(!user.Roles.Contains("Admin"))
                 {
                     this.Response.Redirect("Login.aspx?baseUrl=AdminPanel.aspx");
                 }
-                var dataProvider = new DataProvider();
                 UserStats = dataProvider.GetAllUserStats().ToList();
             }
         }

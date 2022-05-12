@@ -65,7 +65,7 @@ Struktura projektu wygląda następująco:
 Pliki aspx dodajemy do projektu za pomocą Add/NewItem/Web Form.
 
 Nowo dodany plik bedzie miał mniej więcej taką strukturę:
-```
+```csharp
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Logout.aspx.cs" Inherits="CookieApp.Logout" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -83,7 +83,7 @@ Nowo dodany plik bedzie miał mniej więcej taką strukturę:
 Większość to czysty kod html. Na górze mamy sekcję Page z kilkoma domyślnymi parametrami. AutoEventWireup włącza obsługę zdarzeń na stronie, CodeBehind wiąże stronę z plikiem, gdzie możemy dodać bardziej imperatywny kod w C#. Z automatu każdy nowy Web Form jest html'owym elementem form. Najbardziej istotny jest tu atrybut runat="server", który oznacza nasze html'owe tagi jako generowane po stronie serwera. Jest to bardzo powszechne i daje wiele możliwości, o których więcej, nieco później.
 
 Kod HTML'owy możemy łączyć z C# za pomocą znaczników <%= =%> i różnych ich wariacji. Niżej przykład takiego łączenia w pliku ToDo.aspx
-```
+```csharp
 <table>
     <tr>
         <th>Id</th>
@@ -100,7 +100,7 @@ Kod HTML'owy możemy łączyć z C# za pomocą znaczników <%= =%> i różnych i
 </table>
 ```
 Główna logika związana z daną stroną znajduje się jednak w pliku [nazwa Web Form].aspx.cs. Taki plik jest generowany automnatycznie podczas dodawania nowego Web Form. Niżej przykład z ToDo.aspx.cs
-```
+```csharp
 using System;
 using System.Collections.Generic;
 

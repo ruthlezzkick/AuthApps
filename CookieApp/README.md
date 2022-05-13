@@ -180,7 +180,7 @@ public partial class Todo
 Większość kodu C# znajduje się w plikach \*.asp.cs. 
 Login.aspx.cs zawiera 2 metody. 
 
-Page_Load - pobiera ciastko o nazwie user z przeglądarki oraz parametr baseUrl z adresu strony do strony logowania. Na stronę logowania można wejść bezpośrednio lub zostać na nią przekierowanym z innej lokalizacji. Wtedy to właśnie dodajemy parametr z url sttrony bazowej. 
+1. Page_Load - pobiera ciastko o nazwie user z przeglądarki oraz parametr baseUrl z adresu strony do strony logowania. Na stronę logowania można wejść bezpośrednio lub zostać na nią przekierowanym z innej lokalizacji. Wtedy to właśnie dodajemy parametr z url sttrony bazowej. 
 
 Sytuacja kiedy mamy już w ciastku ustawionego usera ( a więc jesteśmy zalogowani ) ale zostaliśmy przekierowani do strony logowania z innej strony oznacza, że nie mieliśmy do niej dostępu mimo zalogowania. Nie posiadaliśmy odpowiedniej roli ( User lub Admin ).  Modyfikujemy niewidoczny label na stronie logowania i czynimy go widocznym. Dzieje się to bez używania javascript i AJAX.
 
@@ -197,7 +197,7 @@ protected void Page_Load(object sender, EventArgs e)
     }
 }
 ```
-Mamy tu też metodę obsługującą zdarzenie kliknięcia w przycisk naszego formularza. 
+2. Mamy tu też metodę obsługującą zdarzenie kliknięcia w przycisk naszego formularza. 
 
 Sygnatura tej metody została wygenerowana automatycznie w momencie, kiedy edytując nasz plik Login.aspx, dodaliśmy nowe zdarzenie do przycisku tutaj.
 ```csharp
@@ -243,7 +243,7 @@ protected void loginBtn_Click(object sender, EventArgs e)
 }
 ```
 
-Metoda Page_load na stronie Logout.aspx ustawia wsteczną datę ważności ciastka. To powszechny sposób na usunięcie go, a więc w naszym przypadku wylogowanie. Wcześniej ustawialiśmy ciastko bez podawania daty ważności (dostało wartość domyślną). Wylogowanie od razu przenosi nas na stronę logowania.
+3. Metoda Page_Load na stronie Logout.aspx ustawia wsteczną datę ważności ciastka. To powszechny sposób na usunięcie go, a więc w naszym przypadku wylogowanie. Wcześniej ustawialiśmy ciastko bez podawania daty ważności (dostało wartość domyślną). Wylogowanie od razu przenosi nas na stronę logowania.
 
 ```csharp
 public partial class Logout : System.Web.UI.Page
@@ -258,4 +258,33 @@ public partial class Logout : System.Web.UI.Page
     }
 }
 ```
+4. Metoda Page_Load dla strony ToDo.aspx odczytuje nasze ciastko o nazwie user. Jeśli ciastko nie istnieje przekierowuje nas do strony logowania, ale w parametrze jako baseUrl podaje adres obecnej strony. Dzięki temu, w przypadku udanego logowania, zostaniemy z powrotem przekierowani na stronę ToDo. Oczywiście takie przekierowanie zostało oprogramowane po stronie strony Login. Jeśli ciastko istnieje, pobieramy na podstawie jego wartości Usera z naszej imitacji bazy. Jeśli user posiada rolę User możemy podrać jego zadania do zmiennej UserToDoItems i wyrenderować naszą stronę. Dzieje się to już w kodzie pliki ToDo.aspx.cs. Moę się zdażyć, że użytkownik jest zalogowany ale nie ma uprawnień do strony ToDo ( w naszym scenariuszu Admin2 nie posiada swoich zadań i nie ma do nich dostępu ). W takim wypadku również przekierowujemy na stronę logowania. Zostanie spełniony warunek zawarty w Page_load tej strony i wyświetlony monit o braku dostępu.
 
+```csharp
+public partial class Todo : System.Web.UI.Page
+ {
+     public IList<ToDoItem> UserToDoItems { get; set; }
+     protected void Page_Load(object sender, EventArgs e)
+     {
+         var cookie = this.Request.Cookies["user"];
+         if (cookie == null)
+         {
+             this.Response.Redirect("Login.aspx?baseUrl=Todo.aspx");
+         }
+         else
+         {
+             var userCookie = cookie.Value;
+             var dataProvider= new DataProvider();
+             var user = dataProvider.GetUserByUserName(userCookie);
+             if (!user.Roles.Contains("User"))
+             {
+                 this.Response.Redirect("Login.aspx?baseUrl=Todo.aspx");
+             }
+             UserToDoItems = dataProvider.GetToDoItemsByUserName(user.UserName);
+         }
+     }
+ }
+```
+Strona AdminPanel.aspx działa bardzo podobnie, więc zostawiam do własnej analizy kodu.
+
+Klasa DataProvider

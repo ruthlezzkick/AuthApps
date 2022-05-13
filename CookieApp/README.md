@@ -56,7 +56,7 @@ Lista zadań i panel administracyjny
   <img src="../IMG/admin1.PNG"/> 
 </p>
 
-## Kod
+## Kod (ogólnie)
 
 Struktura projektu wygląda następująco:
 
@@ -175,4 +175,70 @@ public partial class Todo
     }
 }
 ```
-      
+## Kod (szczegółowo) 
+
+Większość kodu C# znajduje się w plikach \*.asp.cs. 
+Login.aspx.cs zawiera 2 metody. 
+
+Page_Load - pobiera ciastko o nazwie user z przeglądarki oraz parametr baseUrl z adresu strony do strony logowania. Na stronę logowania można wejść bezpośrednio lub zostać na nią przekierowanym z innej lokalizacji. Wtedy to właśnie dodajemy parametr z url sttrony bazowej. 
+
+Sytuacja kiedy mamy już w ciastku ustawionego usera ( a więc jesteśmy zalogowani ) ale zostaliśmy przekierowani do strony logowania z innej strony oznacza, że nie mieliśmy do niej dostępu mimo zalogowania. Nie posiadaliśmy odpowiedniej roli ( User lub Admin ).  Modyfikujemy niewidoczny label na stronie logowania i czynimy go widocznym. Dzieje się to bez używania javascript i AJAX.
+
+```csharp
+protected void Page_Load(object sender, EventArgs e)
+{
+    var cookie = this.Request.Cookies["user"];
+    var baseUrl = this.Request.QueryString["baseUrl"];
+
+    if (cookie!=null && !string.IsNullOrEmpty(baseUrl))
+    {
+        this.loginMessage.Text = "Brak dostępu do strony";
+        this.loginMessage.Visible = true;
+    }
+}
+```
+Mamy tu też metodę obsługującą zdarzenie kliknięcia w przycisk naszego formularza. 
+
+Sygnatura tej metody została wygenerowana automatycznie w momencie, kiedy edytując nasz plik Login.aspx, dodaliśmy nowe zdarzenie do przycisku tutaj.
+```csharp
+<div><asp:Button runat="server" ID="loginBtn" Text="Wyślij" OnClick="loginBtn_Click"></asp:Button></div>
+```
+W skrócie, metoda ta sprawdza podane w formularzu logowania dane. Jeśli użytkownik i hasło są poprawne to ustawia nowe ciastko z loginem usera i ewentualnie przekierowuje na stronę, z której dostaliśmy się do strony logowania.  Są też ustawiane alerty w przypadku blędu. Taki zapis this.Response.Redirect("/") , przekierowuje do strony domyślnej.
+
+```csharp
+protected void loginBtn_Click(object sender, EventArgs e)
+{
+    var dataProvider = new DataProvider();
+
+    if (string.IsNullOrEmpty(this.userTxt.Text))
+    {
+        this.loginMessage.Text = "Nie podano loginu";
+        this.loginMessage.Visible = true;
+    }
+    else
+    {
+        var user = dataProvider.GetUserByUserName(this.userTxt.Text);
+        if (user == null || user.Password != this.passwordTxt.Text)
+        {
+            this.loginMessage.Text = "Błędny login lub hasło";
+            this.loginMessage.Visible = true;
+        }
+        else
+        {
+            var cookie = new HttpCookie("user");
+            cookie.Value = this.userTxt.Text;
+            this.Response.SetCookie(cookie);
+
+            var baseUrl = this.Request.QueryString["baseUrl"];
+            if (!string.IsNullOrEmpty(baseUrl))
+            {
+                this.Response.Redirect(baseUrl);
+            }
+            else
+            {
+                this.Response.Redirect("/");
+            }
+        }
+    }
+}
+```

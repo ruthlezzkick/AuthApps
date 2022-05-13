@@ -287,4 +287,10 @@ public partial class Todo : System.Web.UI.Page
 ```
 Strona AdminPanel.aspx działa bardzo podobnie, więc zostawiam do własnej analizy kodu.
 
-Klasa DataProvider
+Klasa DataProvider to również czysty kod C#, mocno backendowy. Nie jest on ani skomplikowany ani mocno związany z głównym tematem tego projektu.
+
+## Dodatkowe info
+
+Ta aplikacja jest mocno poglądowa i choć przedstawia pewną idee bezpieczeństwa aplikacji ASP.NET to jest dobrym przykładem złego przykładu bezpiecznej aplikacji. W naszym ciastku przechowujemy userName bez żadnego kodowania. tak na prawdę znając Login dowolnego innego użytkownika, możemy wartość w naszym ciastku podmienić na taki login i dostać się do danych takiego użytkownika. W kolejnych projektach tej solucji planuję rozwijać temat i doprowadzić ta aplikację do znacznie bardziej zabezpieczonej.
+
+

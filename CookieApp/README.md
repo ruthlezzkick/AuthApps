@@ -242,3 +242,20 @@ protected void loginBtn_Click(object sender, EventArgs e)
     }
 }
 ```
+
+Metoda Page_load na stronie Logout.aspx ustawia wsteczną datę ważności ciastka. To powszechny sposób na usunięcie go, a więc w naszym przypadku wylogowanie. Wcześniej ustawialiśmy ciastko bez podawania daty ważności (dostało wartość domyślną). Wylogowanie od razu przenosi nas na stronę logowania.
+
+```csharp
+public partial class Logout : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Request.Cookies["user"] != null)
+        {
+            Response.Cookies["user"].Expires = DateTime.Now.AddDays(-1);
+        }
+        this.Response.Redirect("Login.aspx");
+    }
+}
+```
+

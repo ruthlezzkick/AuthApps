@@ -294,7 +294,9 @@ Klasa DataProvider to również czysty kod C#, mocno backendowy. Nie jest on ani
 Ta aplikacja jest mocno poglądowa i choć przedstawia pewną idee bezpieczeństwa aplikacji ASP.NET to jest dobrym przykładem złego przykładu bezpiecznej aplikacji. W naszym ciastku przechowujemy userName bez żadnego kodowania. tak na prawdę znając Login dowolnego innego użytkownika, możemy wartość w naszym ciastku podmienić na taki login i dostać się do danych takiego użytkownika. W kolejnych projektach tej solucji planuję rozwijać temat i doprowadzić ta aplikację do znacznie bardziej zabezpieczonej.
 
 W większości przeglądarek za pomocą F12 możemy dostać się do narzędzia dla developerów. Tam znajdziemy ciastko z nazwą naszego usera
+
 ![Cookie](../IMG/Cookie1.PNG)
 
 Możemy je zmienić na inną nazwę. Jeśli trafimy na istniejącego w systemie użytkownika, uzyskamy dostęp do jego zadań.
-![Cookie](../IMG/Cookie1.PNG)
+
+![Cookie](../IMG/Cookie2.PNG)

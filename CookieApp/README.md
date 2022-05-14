@@ -64,7 +64,7 @@ Struktura projektu wygląda następująco:
 
 Pliki aspx dodajemy do projektu za pomocą Add/NewItem/Web Form.
 
-Nowo dodany plik bedzie miał mniej więcej taką strukturę:
+Nowo dodany plik będzie miał mniej więcej taką strukturę:
 ```csharp
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Logout.aspx.cs" Inherits="CookieApp.Logout" %>
 <!DOCTYPE html>
@@ -99,7 +99,7 @@ Kod HTML'owy możemy łączyć z C# za pomocą znaczników <%= =%> i różnych i
      <% } %>
 </table>
 ```
-Główna logika związana z daną stroną znajduje się jednak w pliku [nazwa Web Form].aspx.cs. Taki plik jest generowany automnatycznie podczas dodawania nowego Web Form. Niżej przykład z ToDo.aspx.cs
+Główna logika związana z daną stroną znajduje się jednak w pliku [nazwa Web Form].aspx.cs. Taki plik jest generowany automatycznie podczas dodawania nowego Web Form. Niżej przykład z ToDo.aspx.cs
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -131,7 +131,7 @@ namespace CookieApp
     }
 }
 ```
-Jeszcze jednym plikiem generowanym podczas dodawania i modyfikowania Web Form jest plik [nazwa Web Form].aspx.designer.cs. Wpadają tu głównie deklaracje dodawanych componentów ASP.NET, bedacych czesto odpowiednikami zwykłych tagów html. Dzięki użyciu \<asp:HyperLink\> zamiast zwykłego tagu \<a\>, elementy strony są traktowane jak zmienne, na których możemy później dynamicznie operować bez użycia javascript
+Jeszcze jednym plikiem generowanym podczas dodawania i modyfikowania Web Form jest plik [nazwa Web Form].aspx.designer.cs. Wpadają tu głównie deklaracje dodawanych komponentów ASP.NET, będących często odpowiednikami zwykłych tagów html. Dzięki użyciu \<asp:HyperLink\> zamiast zwykłego tagu \<a\>, elementy strony są traktowane jak zmienne, na których możemy później dynamicznie operować bez użycia javascript
 
 ```csharp
 public partial class Todo
@@ -180,9 +180,9 @@ public partial class Todo
 Większość kodu C# znajduje się w plikach \*.asp.cs. 
 Login.aspx.cs zawiera 2 metody. 
 
-1. Page_Load - pobiera ciastko o nazwie user z przeglądarki oraz parametr baseUrl z adresu strony do strony logowania. Na stronę logowania można wejść bezpośrednio lub zostać na nią przekierowanym z innej lokalizacji. Wtedy to właśnie dodajemy parametr z url sttrony bazowej. 
+1. Page_Load - pobiera ciastko o nazwie user z przeglądarki oraz parametr baseUrl z adresu strony do strony logowania. Na stronę logowania można wejść bezpośrednio lub zostać na nią przekierowanym z innej lokalizacji. Wtedy to właśnie dodajemy parametr z url strony bazowej. 
 
-Sytuacja kiedy mamy już w ciastku ustawionego usera ( a więc jesteśmy zalogowani ) ale zostaliśmy przekierowani do strony logowania z innej strony oznacza, że nie mieliśmy do niej dostępu mimo zalogowania. Nie posiadaliśmy odpowiedniej roli ( User lub Admin ).  Modyfikujemy niewidoczny label na stronie logowania i czynimy go widocznym. Dzieje się to bez używania javascript i AJAX.
+Sytuacja, kiedy mamy już w ciastku ustawionego usera (a więc jesteśmy zalogowani) ale zostaliśmy przekierowani do strony logowania z innej strony oznacza, że nie mieliśmy do niej dostępu mimo zalogowania. Nie posiadaliśmy odpowiedniej roli (User lub Admin).  Modyfikujemy niewidoczny label na stronie logowania i czynimy go widocznym. Dzieje się to bez używania javascript i AJAX.
 
 ```csharp
 protected void Page_Load(object sender, EventArgs e)
@@ -203,7 +203,7 @@ Sygnatura tej metody została wygenerowana automatycznie w momencie, kiedy edytu
 ```csharp
 <div><asp:Button runat="server" ID="loginBtn" Text="Wyślij" OnClick="loginBtn_Click"></asp:Button></div>
 ```
-W skrócie, metoda ta sprawdza podane w formularzu logowania dane. Jeśli użytkownik i hasło są poprawne to ustawia nowe ciastko z loginem usera i ewentualnie przekierowuje na stronę, z której dostaliśmy się do strony logowania.  Są też ustawiane alerty w przypadku blędu. Taki zapis this.Response.Redirect("/") , przekierowuje do strony domyślnej.
+W skrócie, metoda ta sprawdza podane w formularzu logowania dane. Jeśli użytkownik i hasło są poprawne to ustawia nowe ciastko z loginem usera i ewentualnie przekierowuje na stronę, z której dostaliśmy się do strony logowania.  Są też ustawiane alerty w przypadku błędu. Taki zapis this.Response.Redirect("/") , przekierowuje do strony domyślnej.
 
 ```csharp
 protected void loginBtn_Click(object sender, EventArgs e)
@@ -258,7 +258,7 @@ public partial class Logout : System.Web.UI.Page
     }
 }
 ```
-4. Metoda Page_Load dla strony ToDo.aspx odczytuje nasze ciastko o nazwie user. Jeśli ciastko nie istnieje przekierowuje nas do strony logowania, ale w parametrze jako baseUrl podaje adres obecnej strony. Dzięki temu, w przypadku udanego logowania, zostaniemy z powrotem przekierowani na stronę ToDo. Oczywiście takie przekierowanie zostało oprogramowane po stronie strony Login. Jeśli ciastko istnieje, pobieramy na podstawie jego wartości Usera z naszej imitacji bazy. Jeśli user posiada rolę User możemy podrać jego zadania do zmiennej UserToDoItems i wyrenderować naszą stronę. Dzieje się to już w kodzie pliki ToDo.aspx.cs. Moę się zdażyć, że użytkownik jest zalogowany ale nie ma uprawnień do strony ToDo ( w naszym scenariuszu Admin2 nie posiada swoich zadań i nie ma do nich dostępu ). W takim wypadku również przekierowujemy na stronę logowania. Zostanie spełniony warunek zawarty w Page_load tej strony i wyświetlony monit o braku dostępu.
+4. Metoda Page_Load dla strony ToDo.aspx odczytuje nasze ciastko o nazwie user. Jeśli ciastko nie istnieje, przekierowuje nas do strony logowania, ale w parametrze jako baseUrl podaje adres obecnej strony. Dzięki temu, w przypadku udanego logowania, zostaniemy z powrotem przekierowani na stronę ToDo. Oczywiście takie przekierowanie zostało oprogramowane po stronie strony Login. Jeśli ciastko istnieje, pobieramy na podstawie jego wartości Usera z naszej imitacji bazy. Jeśli user posiada rolę User, możemy pobrać jego zadania do zmiennej UserToDoItems i wyrenderować naszą stronę. Dzieje się to już w kodzie pliki ToDo.aspx.cs. Możę się zdarzyć, że użytkownik jest zalogowany ale nie ma uprawnień do strony ToDo ( w naszym scenariuszu Admin2 nie posiada swoich zadań i nie ma do nich dostępu ). W takim wypadku również przekierowujemy na stronę logowania. Zostanie spełniony warunek zawarty w Page_load tej strony i wyświetlony monit o braku dostępu.
 
 ```csharp
 public partial class Todo : System.Web.UI.Page
